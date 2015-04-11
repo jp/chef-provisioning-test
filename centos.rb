@@ -5,6 +5,7 @@ with_chef_server "https://api.opscode.com/organizations/pupz",
   :signing_key_filename => Chef::Config[:client_key]
 
 machine_image 'centos_nodejs' do
+  recipe 'tar'
   recipe 'nodejs::nodejs_from_source'
   recipe 'pup'
 

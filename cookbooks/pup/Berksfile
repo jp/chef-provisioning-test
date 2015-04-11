@@ -4,3 +4,4 @@ metadata
 
 cookbook 'nginx'
 cookbook 'nodejs'
+cookbook 'tar'
