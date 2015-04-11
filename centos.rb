@@ -6,6 +6,7 @@ with_chef_server "https://api.opscode.com/organizations/pupz",
 
 machine_image 'centos_nodejs' do
   recipe 'tar'
+  recipe 'yum-epel'
   recipe 'nodejs::nodejs_from_source'
   recipe 'pup'
 
