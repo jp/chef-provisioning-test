@@ -10,7 +10,10 @@ machine_image 'centos_nodejs' do
   recipe 'pup'
 
   attributes :nodejs => {
-    :version => '0.12.2'
+    :version => '0.12.2',
+    :source => {
+      :checksum => 'ac7e78ade93e633e7ed628532bb8e650caba0c9c33af33581957f3382e2a772d'
+    }
   }
 
   machine_options :docker_options => {
