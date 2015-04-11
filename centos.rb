@@ -9,6 +9,10 @@ machine_image 'centos_nodejs' do
   recipe 'nodejs::nodejs_from_source'
   recipe 'pup'
 
+  attributes :nodejs => {
+    :version => '0.12.2'
+  }
+
   machine_options :docker_options => {
       :base_image => {
           :name => 'centos',
