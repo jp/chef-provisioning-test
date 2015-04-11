@@ -30,7 +30,7 @@ machine 'web00' do
   from_image 'centos_nodejs'
 
   machine_options :docker_options => {
-      :command => 'service nginx start'
+      :command => '/usr/sbin/nginx'
   }
 end
 
