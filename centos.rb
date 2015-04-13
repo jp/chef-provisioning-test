@@ -8,7 +8,7 @@ machine_image 'centos_nodejs' do
   recipe 'tar'
   recipe 'yum-epel'
   recipe 'nodejs::nodejs_from_source'
-  recipe 'pup'
+  recipe 'pup::nginx'
 
   attributes :nodejs => {
     :version => '0.12.2',
@@ -30,7 +30,10 @@ machine 'web00' do
   from_image 'centos_nodejs'
 
   machine_options :docker_options => {
-      :command => '/usr/sbin/nginx'
+      :command => '/usr/sbin/nginx',
+      :command => 'bash',
+      :ports => ["8000:80"],
+      :keep_stdin_open => true
   }
 end
 
