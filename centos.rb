@@ -6,9 +6,10 @@ with_chef_server "https://api.opscode.com/organizations/pupz",
 
 machine_image 'centos_nodejs' do
   recipe 'tar'
-  recipe 'yum-epel'
-  recipe 'nodejs::nodejs_from_source'
-  recipe 'pup::nginx'
+  recipe 'redisio'
+#  recipe 'mongodb'
+  recipe 'pup::backend'
+  recipe 'pup::frontend'
 
   attributes :nodejs => {
     :version => '0.12.2',
@@ -31,9 +32,16 @@ machine 'web00' do
 
   machine_options :docker_options => {
       :command => '/usr/sbin/nginx',
-      :command => 'bash',
-      :ports => ["8000:80"],
-      :keep_stdin_open => true
+      :ports => ["8000:80"]
+  }
+end
+
+machine 'pup_redis' do
+  from_image 'centos_nodejs'
+
+  machine_options :docker_options => {
+      :command => '/usr/local/bin/redis-server',
+      :ports => ["6379:6379"]
   }
 end
 
